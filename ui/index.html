@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Test queries against Solr backend</title>
     <script src="js/angular.min.js"></script>
+
     <script src="js/solr.js"></script>
 </head>
 <body ng-controller="SolrCtrl">
@@ -18,5 +19,10 @@
 </dl>
 <h2>Running</h2>
 {{activeQuery}}
+
+<h3>{{status}}</h3>
+<pre>
+{{docsStr}}
+</pre>
 </body>
 </html>
