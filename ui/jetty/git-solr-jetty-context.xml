@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure class="org.eclipse.jetty.server.handler.ContextHandler">
+  <Set name="contextPath">/git-solr</Set>
+	<Set name="handler">
+		<New class="org.eclipse.jetty.server.handler.ResourceHandler">
+            <Set name="resourceBase"><SystemProperty name="solr.solr.home"/>../ui/</Set>
+		  <Set name="directoriesListed">true</Set>
+		</New>
+	</Set>
+</Configure>

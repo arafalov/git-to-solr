@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="solrApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Test queries against Solr backend</title>
+    <script src="js/angular.min.js"></script>
+    <script src="js/solr.js"></script>
+</head>
+<body ng-controller="SolrCtrl">
+<h1>Test queries against Solr backend</h1>
+<label for="handlerUrl">Handler URL:</label>
+<input type="text" id="handlerUrl" ng-model="handlerUrl" size="40" required>
+
+<h2>Queries</h2>
+<dl ng-repeat="query in queries">
+    <dt style="font-weight:bold;">{{query.name}}</dt>
+    <dd><a href="" ng-click="runQuery(query.definition)">{{query.definition}}</a></dd>
+</dl>
+<h2>Running</h2>
+{{activeQuery}}
+</body>
+</html>
