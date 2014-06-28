@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema version="1.5" name="git-to-solr">
+    <fields>
+
+        <!-- Need this for nested documents -->
+        <field name="_root_" type="string" indexed="true" stored="false"/>
+
+        <field name="id" type="string" indexed="true" stored="true" required="true"/>
+        <field name="type" type="string" indexed="true" stored="true" required="true"/>
+        <field name="message" type="text_english" indexed="true" stored="true"/>
+
+        <field name="committer" type="string" indexed="true" stored="true"/>
+        <field name="commitTime" type="tdate" indexed="true" stored="true"/>
+        <field name="committerEmail" type="string" indexed="true" stored="true"/>
+        <field name="parents" type="string" indexed="true" stored="true" multiValued="true"/>
+
+        <field name="diffType" type="string" indexed="true" stored="true"/>
+        <field name="fileId" type="string" indexed="true" stored="true"/>
+        <field name="filePath" type="string" indexed="true" stored="true"/>
+        <field name="fileOldId" type="string" indexed="true" stored="true"/>
+        <field name="fileOldPath" type="string" indexed="true" stored="true"/>
+    </fields>
+    <uniqueKey>id</uniqueKey>
+    <types>
+        <fieldType name="string" class="solr.StrField"/>
+        <fieldType name="tdate" class="solr.TrieDateField" precisionStep="6" positionIncrementGap="0"/>
+
+        <fieldType name="text_english" class="solr.TextField" positionIncrementGap="100">
+            <analyzer>
+                <tokenizer class="solr.StandardTokenizerFactory" />
+                <filter class="solr.StopFilterFactory" ignoreCase="true" />
+                <filter class="solr.LowerCaseFilterFactory"/>
+                <filter class="solr.EnglishPossessiveFilterFactory"/>
+                <filter class="solr.PorterStemFilterFactory"/>
+            </analyzer>
+        </fieldType>
+    </types>
+</schema>
+
