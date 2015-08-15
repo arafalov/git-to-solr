@@ -2,7 +2,7 @@ package com.solrstart.gittosolr;
 
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class Main {
 
-    private static final String DEFAULT_SOLR_SERVER = "http://localhost:8983/solr/";
+    private static final String DEFAULT_SOLR_SERVER = "http://localhost:8983/solr/git";
 
     public static void main(String[] args) throws SolrServerException, IOException {
         if (args.length < 1) {
@@ -156,7 +156,7 @@ public class Main {
 
 
         System.out.println("Parsing!");
-        HttpSolrServer solr = new HttpSolrServer(solrServer);
+        HttpSolrClient solr = new HttpSolrClient(solrServer);
         solr.deleteByQuery("*:*");
         solr.add(solrDocumentList);
         solr.commit();
