@@ -151,7 +151,7 @@ public class Main {
         }
         System.out.println(count);
 
-        walk.release();
+        walk.close();
         repo.close();
 
 

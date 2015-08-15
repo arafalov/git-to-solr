@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
-  <luceneMatchVersion>LUCENE_4_9</luceneMatchVersion>
+  <luceneMatchVersion>LUCENE_5_2</luceneMatchVersion>
   <requestDispatcher handleSelect="false">
     <httpCaching never304="true" />
   </requestDispatcher>
