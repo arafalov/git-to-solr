@@ -44,10 +44,13 @@ public class Main {
         }
 
         FileRepositoryBuilder builder = new FileRepositoryBuilder();
-        Repository repo = builder.setGitDir(gitDir).build();
+        Repository repo = builder.setGitDir(gitDir)
+                .readEnvironment()
+                .findGitDir()
+                .build();
 
         System.out.printf("Indexing %s\n", repo.getFullBranch());
-        Ref head = repo.getRef(repo.getFullBranch()); //index starting from current branch
+        Ref head = repo.exactRef(repo.getFullBranch()); //index starting from current branch
         RevWalk walk = new RevWalk(repo);
 
         RevCommit commit = walk.parseCommit(head.getObjectId());
@@ -156,7 +159,7 @@ public class Main {
 
 
         System.out.println("Parsing!");
-        HttpSolrClient solr = new HttpSolrClient(solrServer);
+        HttpSolrClient solr = new HttpSolrClient.Builder(solrServer).build();
         solr.deleteByQuery("*:*");
         solr.add(solrDocumentList);
         solr.commit();
