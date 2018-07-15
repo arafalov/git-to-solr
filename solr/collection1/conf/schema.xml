@@ -18,6 +18,7 @@
     <field name="diffType" type="string" indexed="true" stored="true"/>
     <field name="fileId" type="string" indexed="true" stored="true"/>
     <field name="filePath" type="path" indexed="true" stored="true"/>
+    <field name="fileName" type="string" indexed="true" stored="true" docValues="true"/>
     <field name="fileOldId" type="string" indexed="true" stored="true"/>
     <field name="fileOldPath" type="path" indexed="true" stored="true"/>
 

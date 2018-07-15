@@ -124,7 +124,7 @@ public class Main {
                     diffSolrDoc.addField("id", rev.getName() + "-" + diffIdx); //anything else seems to cause dups
                     diffSolrDoc.addField("type", "diff");
                     DiffEntry.ChangeType diffType = diffEntry.getChangeType();
-                    diffSolrDoc.addField("diffType", diffType);
+                    diffSolrDoc.addField("diffType", diffType.name());
 
                     switch (diffType) {
                         case ADD:
@@ -132,7 +132,9 @@ public class Main {
                         case RENAME:
                         case MODIFY:
                             diffSolrDoc.addField("fileId",diffEntry.getNewId().name());
-                            diffSolrDoc.addField("filePath", diffEntry.getNewPath());
+                            String newPath = diffEntry.getNewPath();
+                            diffSolrDoc.addField("filePath", newPath);
+                            diffSolrDoc.addField("fileName", (new File(newPath)).getName());
                     }
                     switch (diffType) {
                         case COPY:
